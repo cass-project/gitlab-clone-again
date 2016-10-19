@@ -10,6 +10,14 @@ class CreateRoomCommand extends Command
 {
     public function run(ServerRequestInterface $request, ResponseBuilder $responseBuilder): ResponseInterface
     {
-        
+        try {
+
+            $name = $request->getBody()->getContents()['name'];
+
+            print_r("hellow".$name);
+            die();
+        } catch(\Exception $e) {
+
+        }
     }
 }
