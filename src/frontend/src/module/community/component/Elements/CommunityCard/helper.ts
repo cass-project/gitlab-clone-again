@@ -24,10 +24,6 @@ export class CommunityCardHelper
         return this.theme.findById(this.community.theme.id);
     }
 
-    getThemeTitle(): string {
-        return this.getTheme().title;
-    }
-
     getCommunityTitle(): string {
         return this.community.title;
     }
@@ -42,6 +38,14 @@ export class CommunityCardHelper
 
     hasTheme() {
         return this.community.theme.has;
+    }
+
+    getThemeTitle() : string {
+        if(this.hasTheme()) {
+            return this.theme.findById(this.community.theme.id).title;
+        }else{
+            return 'N/A';
+        }
     }
 
     getRouterParams() {
