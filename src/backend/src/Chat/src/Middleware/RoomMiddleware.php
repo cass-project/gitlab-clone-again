@@ -23,7 +23,7 @@ class RoomMiddleware implements MiddlewareInterface
         $responseBuilder = new CASSResponseBuilder($response);
 
         $resolver =  $this->commandService->createResolverBuilder()
-            ->attachDirect('room-create', CreateRoomCommand::class, 'PUT')
+            ->attachDirect('create', CreateRoomCommand::class, 'PUT')
             ->resolve($request);
 
         return $resolver->run($request, $responseBuilder);

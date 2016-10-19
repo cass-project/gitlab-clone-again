@@ -6,17 +6,42 @@ use CASS\Util\Entity\IdEntity\IdEntity;
 use CASS\Util\Entity\IdEntity\IdEntityTrait;
 use CASS\Util\JSONSerializable;
 
+/**
+ * @Entity(repositoryClass="CASS\Chat\Repository\RoomRepository")
+ * @Table(name="room")
+ */
 class Room implements IdEntity, JSONSerializable
 {
     use IdEntityTrait;
 
     const OWNER_TYPE_PROFILE = 1;
 
+    /**
+     * @Column(type="string", name="name")
+     * @var string
+     */
     private $name;
+
     private $image;
+
+    /**
+     * @Column(type="integer", name="owner_id")
+     * @var int
+     */
     private $ownerId;
+
+    /**
+     * @Column(type="integer", name="owner_type")
+     * @var int
+     */
     private $ownerType;
+
+    /**
+     * @Column(type="datetime", name="created")
+     * @var \DateTime
+     */
     private $created;
+
     private $accessPrivilege;
 
     public function __construct()
@@ -32,6 +57,7 @@ class Room implements IdEntity, JSONSerializable
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     public function getImage()
@@ -52,6 +78,7 @@ class Room implements IdEntity, JSONSerializable
     public function setOwnerType($ownerType)
     {
         $this->ownerType = $ownerType;
+        return $this;
     }
 
     public function getOwnerId()
@@ -62,6 +89,7 @@ class Room implements IdEntity, JSONSerializable
     public function setOwnerId($ownerId)
     {
         $this->ownerId = $ownerId;
+        return $this;
     }
 
     public function getCreated()
@@ -77,6 +105,7 @@ class Room implements IdEntity, JSONSerializable
     public function setAccessPrivilege($accessPrivilege)
     {
         $this->accessPrivilege = $accessPrivilege;
+        return $this;
     }
 
     public function toJSON(): array
